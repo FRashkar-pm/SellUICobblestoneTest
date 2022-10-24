@@ -56,7 +56,7 @@ class Main extends PluginBase implements Listener {
                 // Reset item
                 $player->getInventory()->remove($item);
                 
-            });
+            }});
 
         $item = $player()->getInventory()->getIntemInHand();
 
