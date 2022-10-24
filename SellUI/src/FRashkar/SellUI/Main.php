@@ -10,6 +10,8 @@ use pocketmine\event\Listener;
 use pocketmine\player\Player;
 use pocketmine\plugin\PluginBase;
 
+use FRashkar\SellUI\Commands\SellUICommand;
+
 use jojoe77777\FormAPI\SimpleForm;
 use onebone\economyapi\EconomyAPI;
 
