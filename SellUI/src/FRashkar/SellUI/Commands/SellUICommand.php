@@ -1,14 +1,13 @@
 <?php
 
-namespace FRashkar\SellUI\Commands\SellUICommand;
+namespace FRashkar\SellUI\Commands;
 
 use pocketmine\command\CommandSender;
 use pocketmine\command\Command;
 use pocketmine\player\Player;
 use pocketmine\utils\TextFormat;
 
-class SellUICommand extends Command
-{
+class SellUICommand extends Command {
 
     public function __construct()
     {
