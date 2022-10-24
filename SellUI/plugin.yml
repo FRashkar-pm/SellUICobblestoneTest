@@ -1,5 +1,6 @@
 name: SellUI
 version: 0.0.1
 api: 4.0.0
-authors: FRashkar
+author: FRashkar
 main: FRashkar\SellUI\Main
+description: "Test"
