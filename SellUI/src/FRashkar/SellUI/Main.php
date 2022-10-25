@@ -19,7 +19,7 @@ class Main extends PluginBase implements Listener {
 
     public function onEnable() : void {
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
-        $this->getServer()->getCommandMap()->register("sellui", new SellUICommand());
+        $this->getServer()->getCommandMap()->register("sellui");
         $this->getLogger()->info("Actived");
     }
 
