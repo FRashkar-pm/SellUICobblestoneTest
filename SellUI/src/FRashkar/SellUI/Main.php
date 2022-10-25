@@ -10,6 +10,7 @@ use pocketmine\Server;
 
 use pocketmine\player\Player;
 use pocketmine\plugin\PluginBase;
+use pocketmine\plugin\PluginManager;
 
 use FRashkar\SellUI\Commands\SellUICommand;
 
@@ -20,6 +21,7 @@ class Main extends PluginBase implements Listener {
 
     public function onEnable() : void {
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
+        $this->getServer()->getPluginManager()->getPlugin("EconomyAPI");
         $server->getPluginManager()->getPlugin("EconomyAPI");
         $this->getServer()->getCommandMap()->register("sellui", new SellUICommand($this));
         $this->getLogger()->info("Actived");
