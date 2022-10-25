@@ -8,7 +8,7 @@ use pocketmine\command\Command;
 use pocketmine\player\Player;
 use pocketmine\utils\TextFormat;
 
-use FRashkar/SellUI/Main;
+use FRashkar\SellUI\Main;
 
 class SellUICommand extends Command {
 
