@@ -18,6 +18,20 @@ use Vecnavium\FormsUI\SimpleForm;
 use onebone\economyapi\EconomyAPI;
 
 class Main extends PluginBase implements Listener {
+    
+    public function __construct(
+		private Server $server,
+		private ?string $pluginDataDirectory,
+		private ?PluginGraylist $graylist = null
+	){
+		if($this->pluginDataDirectory !== null){
+			if(!file_exists($this->pluginDataDirectory)){
+				@mkdir($this->pluginDataDirectory, 0777, true);
+			}elseif(!is_dir($this->pluginDataDirectory)){
+				throw new \RuntimeException("Plugin data path $this->pluginDataDirectory exists and is not a directory");
+			}
+		}
+	}
 
     public function onEnable() : void {
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
