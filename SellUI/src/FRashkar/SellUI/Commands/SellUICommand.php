@@ -19,11 +19,14 @@ class SellUICommand extends Command {
     
     public function execute(CommandSender $sender, string $commandLabel, array $args)
     {
-        if($sender instanceof Player) {
-            $sender->sendMessage(TextFormat::RED . "Test");
-            $this->openSellUI($sender);
+        if(!$sender instanceof Player) {
+            $sender->sendMessage(TextFormat::RED . "Please use it in-game!");
         }else{
-            $this->openSellUI($sender);
+            $this->getOwningPlugin()->openSellUI($sender);
         }
+    }
+    
+    public function getOwningPlugin() : Main {
+        return $this->main;
     }
  }
