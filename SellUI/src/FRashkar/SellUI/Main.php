@@ -9,6 +9,7 @@ use pocketmine\event\Listener;
 use pocketmine\Server;
 
 use pocketmine\player\Player;
+use pocketmine\plugin\Plugin;
 use pocketmine\plugin\PluginBase;
 use pocketmine\plugin\PluginManager;
 
@@ -18,8 +19,9 @@ use Vecnavium\FormsUI\SimpleForm;
 use onebone\economyapi\EconomyAPI;
 
 class Main extends PluginBase implements Listener {
-	
-    private Server $server;
+    
+    public function __construct(
+	    private Server $server){}
 
     public function onEnable() : void {
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
