@@ -19,16 +19,12 @@ use Vecnavium\FormsUI\SimpleForm;
 use onebone\economyapi\EconomyAPI;
 
 class Main extends PluginBase implements Listener {
-    
-    public function __construct(
-	    private Server $server){}
 
     public function onEnable() : void {
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
         $this->getServer()->getPluginManager()->getPlugin("EconomyAPI");
-        $server->getPluginManager()->getPlugin("EconomyAPI");
         $this->getServer()->getCommandMap()->register("sellui", new SellUICommand($this));
-        $this->getLogger()->info("Actived");
+        $this->getLogger()->info("Plugin Actived!");
     }
 
     public function onCommand(CommandSender $sender, Command $command, string $label, array $args) : bool {
@@ -63,7 +59,7 @@ class Main extends PluginBase implements Listener {
                 EconomyAPI::getInstance()->addMoney($player, $total);
 
                 // Send message to player
-                $player->sendMessage("You have recieved " . $total . "for selling Cobblestone x" . $item->getCount());
+                $player->sendMessage("You have recieved $ " . $total . " for selling Cobblestone x" . $item->getCount());
 
                 // Reset item
                 $player->getInventory()->remove($item);
