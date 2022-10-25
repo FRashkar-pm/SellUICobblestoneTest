@@ -11,9 +11,12 @@ use pocketmine\utils\TextFormat;
 use FRashkar\SellUI\Main;
 
 class SellUICommand extends Command {
+    
+    private Main $main;
 
-    public function __construct()
+    public function __construct(Main $main)
     {
+        $this->main = $main;
         parent::__construct("sellui", "Sellui command", "/sellui", ["sui"]);
     }
     
@@ -24,6 +27,7 @@ class SellUICommand extends Command {
         }else{
             $this->getOwningPlugin()->openSellUI($sender);
         }
+        return true;
     }
     
     public function getOwningPlugin() : Main {
