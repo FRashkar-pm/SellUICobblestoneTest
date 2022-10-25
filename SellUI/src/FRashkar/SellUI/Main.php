@@ -12,7 +12,7 @@ use pocketmine\plugin\PluginBase;
 
 use FRashkar\SellUI\Commands\SellUICommand;
 
-use Vecnavium\FormsUI\SimpleForm;
+use FRashkar\SellUI\FormsUI\SimpleForm;
 use onebone\economyapi\EconomyAPI;
 
 class Main extends PluginBase implements Listener {
