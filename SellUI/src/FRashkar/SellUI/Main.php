@@ -44,7 +44,7 @@ class Main extends PluginBase implements Listener {
             if ($result === 0) {
                 
                 // Get item in hand
-                $item = $player->getInventory()->getIntemInHand();
+                $item = $player->getInventory()->getItemInHand();
 
                 $price = 0.1; // 1 cobblestone = 0.1 money
 
@@ -62,7 +62,7 @@ class Main extends PluginBase implements Listener {
                 
             }});
 
-        $item = $player->getInventory()->getIntemInHand();
+        $item = $player->getInventory()->getItemInHand();
 
         if ($item->getId() != 4) {
             $player->sendMessage("You can only sell cobblestone!");
