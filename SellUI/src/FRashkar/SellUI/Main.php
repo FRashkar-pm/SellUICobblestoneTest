@@ -77,7 +77,7 @@ class Main extends PluginBase implements Listener {
         // Form
         $form->setTitle( title: "Sell UI");
         $form->setContent( content: "Do you want to sell cobblestone x" . $item->getCount() . " ?");
-        $form->addButton( text: "Sell now!", 0, "FRashkar\SellUI\cobblestone");
+        $form->addButton( text: "Sell now!", 0, "textures/blocks/cobblestone");
 
         // Send form to player
         $player->sendForm($form);
