@@ -79,7 +79,7 @@ class Main extends PluginBase implements Listener {
         // Form
         $form->setTitle( title: "Sell UI");
         $form->setContent( content: "Do you want to sell cobblestone x" . $item->getCount() . " ?");
-        $form->addButton(T::GOLD . "Sell now!", 0, "textures/blocks/cobblestone");
+        $form->addButton(TextFormat::GOLD . "Sell now!", 0, "textures/blocks/cobblestone");
 
         // Send form to player
         $player->sendForm($form);
