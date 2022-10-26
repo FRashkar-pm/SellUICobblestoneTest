@@ -44,8 +44,6 @@ class Main extends PluginBase implements Listener {
         }
         return true;
     }
-    
-    public function remove(Item $item) : void;
 
     public function openSellUI(Player $player)
     {
