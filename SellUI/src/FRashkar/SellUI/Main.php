@@ -14,6 +14,7 @@ use pocketmine\item\ItemIds;
 use pocketmine\inventory\Inventory;
 use pocketmine\inventory\PlayerInventory;
 
+use pocketmine\utils\Config;
 use pocketmine\utils\TextFormat;
 
 use pocketmine\player\Player;
