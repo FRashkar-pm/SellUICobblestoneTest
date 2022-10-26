@@ -53,7 +53,7 @@ class Main extends PluginBase implements Listener {
             if ($result === 0) {
                 
                 // Get item in hand
-                $item = $player->getInventory()->getItemInHand();
+                $item = $player->getInventory();
 
                 $price = 0.1; // 1 cobblestone = 0.1 money
 
@@ -67,7 +67,7 @@ class Main extends PluginBase implements Listener {
                 $player->sendMessage("You have recieved $ " . $total . " for selling Cobblestone x" . $item->getCount());
 
                 // Reset item
-                $player->getInventory()->getItemInHand()->remove($item);
+                $player->getInventory()->remove($item);
                 
             }});
 
