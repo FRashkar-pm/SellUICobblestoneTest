@@ -8,6 +8,8 @@ use pocketmine\command\CommandSender;
 use pocketmine\event\Listener;
 use pocketmine\Server;
 
+use pocketmine\item\Item;
+
 use pocketmine\utils\TextFormat;
 
 use pocketmine\player\Player;
