@@ -17,7 +17,7 @@ use FRashkar\SellUI\Commands\SellUICommand;
 
 use Vecnavium\FormsUI\SimpleForm;
 
-use cooldogedev\BedrockEconomy;
+use cooldogedev/BedrockEconomy;
 
 class Main extends PluginBase implements Listener {
 
@@ -57,7 +57,7 @@ class Main extends PluginBase implements Listener {
                 $total = $item->getCount() * $price;
 
                 // Give money to player 
-                BedrockEconomy::getInstance()->addMoney($player, $total);
+                BedrockEconomyAPI::legacy()->addToPlayerBalance($player, $total);
 
                 // Send message to player
                 $player->sendMessage("You have recieved $ " . $total . " for selling Cobblestone x" . $item->getCount());
