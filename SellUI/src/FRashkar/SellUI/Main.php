@@ -65,7 +65,7 @@ class Main extends PluginBase implements Listener {
                 $player->sendMessage("You have recieved $ " . $total . " for selling Cobblestone x" . $item->getCount());
 
                 // Reset item
-                $player->getInventory()->remove($item);
+                $player->getInventory()->getItemInHand()->remove($item);
                 
             }});
 
