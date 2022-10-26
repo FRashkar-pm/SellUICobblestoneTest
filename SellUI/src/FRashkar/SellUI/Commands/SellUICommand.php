@@ -28,7 +28,6 @@ class SellUICommand extends Command {
             $sender->sendMessage(TextFormat::RED . "Please use it in-game!");
         }else{
             $this->getOwningPlugin()->openSellUI($sender);
-            $sender->sendMessage(TextFormat::GREEN . "Open SellUI");
         }
         return true;
     }
