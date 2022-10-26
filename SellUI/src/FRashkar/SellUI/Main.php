@@ -17,12 +17,14 @@ use FRashkar\SellUI\Commands\SellUICommand;
 
 use Vecnavium\FormsUI\SimpleForm;
 use onebone\economyapi\EconomyAPI;
+use cooldogdev\BedrockEconomy;
 
 class Main extends PluginBase implements Listener {
 
     public function onEnable() : void {
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
         $this->getServer()->getPluginManager()->getPlugin("EconomyAPI");
+        $this->getServer()->getPluginManager()->getPlugin("BedrockEconomy");
         $this->getServer()->getCommandMap()->register("sellui", new SellUICommand($this));
         $this->getLogger()->info("Plugin Actived!");
     }
@@ -57,6 +59,7 @@ class Main extends PluginBase implements Listener {
 
                 // Give money to player
                 EconomyAPI::getInstance()->addMoney($player, $total);
+                BedrockEconomy::getInstance()->addMoney($player, $total);
 
                 // Send message to player
                 $player->sendMessage("You have recieved $ " . $total . " for selling Cobblestone x" . $item->getCount());
