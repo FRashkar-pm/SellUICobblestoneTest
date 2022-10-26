@@ -17,7 +17,7 @@ use FRashkar\SellUI\Commands\SellUICommand;
 
 use Vecnavium\FormsUI\SimpleForm;
 
-use cooldogedev/BedrockEconomy;
+use cooldogedev\BedrockEconomy;
 
 class Main extends PluginBase implements Listener {
 
