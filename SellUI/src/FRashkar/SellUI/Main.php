@@ -9,6 +9,7 @@ use pocketmine\event\Listener;
 use pocketmine\Server;
 
 use pocketmine\item\Item;
+use pocketmine\inventory\Inventory;
 use pocketmine\inventory\PlayerInventory;
 
 use pocketmine\utils\TextFormat;
@@ -43,6 +44,8 @@ class Main extends PluginBase implements Listener {
         }
         return true;
     }
+    
+    public function remove(Item $item) : void;
 
     public function openSellUI(Player $player)
     {
