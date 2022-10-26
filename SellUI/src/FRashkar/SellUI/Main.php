@@ -48,7 +48,7 @@ class Main extends PluginBase implements Listener {
     
     public function removeItem(Player $player, Item $item)
     {
-        $player->getInventory();
+        $player->getInventory()->getItem();
         return;
     }
 
