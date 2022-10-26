@@ -34,6 +34,12 @@ class Main extends PluginBase implements Listener {
         $this->getServer()->getPluginManager()->getPlugin("EconomyAPI");
         $this->getServer()->getCommandMap()->register("sellui", new SellUICommand($this));
         $this->getLogger()->info("Plugin Actived!");
+        
+        $this->saveDefaultConfig();
+        $this->saveResource('price.yml');
+        
+        self::$price = new Config($this->getDataFolder() . 'price.yml', Config::YAML);
+        
     }
 
     public function onCommand(CommandSender $sender, Command $command, string $label, array $args) : bool {
