@@ -14,6 +14,7 @@ use pocketmine\plugin\PluginBase;
 use pocketmine\plugin\PluginManager;
 
 use FRashkar\SellUI\Commands\SellUICommand;
+use FRashkar\SellUI\cobblestone;
 
 use Vecnavium\FormsUI\SimpleForm;
 use onebone\economyapi\EconomyAPI;
@@ -76,7 +77,7 @@ class Main extends PluginBase implements Listener {
         // Form
         $form->setTitle( title: "Sell UI");
         $form->setContent( content: "Do you want to sell cobblestone x" . $item->getCount() . " ?");
-        $form->addButton( text: "Sell now!");
+        $form->addButton( text: "Sell now!", 0, "FRashkar/SellUI/cobblestone");
 
         // Send form to player
         $player->sendForm($form);
