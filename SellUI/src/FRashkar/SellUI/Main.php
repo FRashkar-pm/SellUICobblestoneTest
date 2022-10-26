@@ -9,6 +9,7 @@ use pocketmine\event\Listener;
 use pocketmine\Server;
 
 use pocketmine\item\Item;
+use pocketmine\inventory\PlayerInventory;
 
 use pocketmine\utils\TextFormat;
 
