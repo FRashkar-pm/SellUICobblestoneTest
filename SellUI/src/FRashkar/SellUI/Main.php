@@ -25,8 +25,6 @@ use Vecnavium\FormsUI\SimpleForm;
 use onebone\economyapi\EconomyAPI;
 
 class Main extends PluginBase implements Listener {
-    
-    protected $count = 1;
 
     public function onEnable() : void {
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
@@ -56,7 +54,7 @@ class Main extends PluginBase implements Listener {
             if ($result === 0) {
                 
                 // Get item in hand
-                $item = $player->getInventory();
+                $item = $player->getInventory()->getId(4);
 
                 $price = 0.1; // 1 cobblestone = 0.1 money
 
@@ -70,7 +68,7 @@ class Main extends PluginBase implements Listener {
                 $player->sendMessage("You have recieved $ " . $total . " for selling Cobblestone x" . $item->getCount());
 
                 // Reset item
-                $player->getInventory()->remove($item);
+                $player->getInventory()->getId(4)->remove($item);
                 
             }});
 
