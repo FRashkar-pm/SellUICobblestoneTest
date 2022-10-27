@@ -8,6 +8,8 @@ use pocketmine\command\CommandSender;
 use pocketmine\event\Listener;
 use pocketmine\Server;
 
+use pocketmine\block\VanillaBlocks;
+
 use pocketmine\item\Item;
 use pocketmine\item\ItemFactory;
 use pocketmine\item\ItemIds;
@@ -30,9 +32,6 @@ use Vecnavium\FormsUI\SimpleForm;
 use onebone\economyapi\EconomyAPI;
 
 class Main extends PluginBase implements Listener {
-    
-    /** @var Config */
-	private $prices;
 
     public function onEnable() : void {
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
@@ -40,30 +39,7 @@ class Main extends PluginBase implements Listener {
         $this->getServer()->getCommandMap()->register("sellui", new SellUICommand($this));
         $this->getLogger()->info("Plugin Actived!");
         
-        @mkdir($this->getDataFolder());
-		if(!is_file($this->getDataFolder()."prices.yml")){
-			$this->prices = new Config($this->getDataFolder()."prices.yml", Config::YAML, yaml_parse($this->readResource("prices.yml")));
-		}else{
-			$this->prices = new Config($this->getDataFolder()."prices.yml", Config::YAML);
-		}
-        $this->saveDefaultConfig();
-        $this->saveResource('prices.yml');
-        
-        $this->prices = new Config($this->getDataFolder() . 'prices.yml', Config::YAML);
-        
     }
-    
-    private function readResource($res){
-		$path = $this->getFile()."resources/".$res;
-		$resource = $this->getResource($res);
-		if(!is_resource($resource)){
-			$this->getLogger()->debug("Tried to load unknown resource ".TextFormat::AQUA.$res.TextFormat::RESET);
-			return false;
-		}
-		$content = stream_get_contents($resource);
-		@fclose($content);
-		return $content;
-	}
 
     public function onCommand(CommandSender $sender, Command $command, string $label, array $args) : bool {
         switch ($command->getName()) {
@@ -74,13 +50,6 @@ class Main extends PluginBase implements Listener {
                 break;
         }
         return true;
-    }
-    
-    public function onPricesSet(Prices $price) 
-    {
-        $prices = $price;
-        
-        if(isset("Price"["Prices: ".$prices]));
     }
 
     public function openSellUI(Player $player)
@@ -95,7 +64,7 @@ class Main extends PluginBase implements Listener {
                 // Get item in hand
                 $item = $player->getInventory()->getItemInHand();
 
-                $price = $prices; // 1 cobblestone = 0.1 money
+                $price = 0.1; // 1 cobblestone = 0.1 money
 
                 // Total item
                 $total = $item->getCount() * $price;
@@ -107,7 +76,7 @@ class Main extends PluginBase implements Listener {
                 $player->sendMessage("You have recieved $ " . $total . " for selling Cobblestone x" . $item->getCount());
 
                 // Reset item
-                $player->getInventory()->setItemInHand(VanillaItems::AIR());
+                $player->getInventory()->setItemInHand(VanillaBlocks::AIR()->asItem());
                 
             }});
 
