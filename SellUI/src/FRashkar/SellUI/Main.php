@@ -38,6 +38,7 @@ class Main extends PluginBase implements Listener {
         $this->getServer()->getPluginManager()->getPlugin("EconomyAPI");
         $this->getServer()->getCommandMap()->register("sellui", new SellUICommand($this));
         $this->getLogger()->info("Plugin Actived!");
+        $this->saveDefaultConfig();
         
     }
 
@@ -64,7 +65,7 @@ class Main extends PluginBase implements Listener {
                 // Get item in hand
                 $item = $player->getInventory()->getItemInHand();
 
-                $price = 0.1; // 1 cobblestone = 0.1 money
+                $price = $this->getConfig()->get("price"); // 1 cobblestone = 0.1 money
 
                 // Total item
                 $total = $item->getCount() * $price;
