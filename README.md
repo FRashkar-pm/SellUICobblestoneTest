@@ -6,7 +6,7 @@ Sell UI for Cobblestone item
 You can change price in config.yml file
 
 
-### - Command
+### Command
 Command : /sellui or /sui
 
 
