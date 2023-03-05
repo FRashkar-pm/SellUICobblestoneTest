@@ -35,7 +35,7 @@ class Main extends PluginBase implements Listener {
 
     public function onEnable() : void {
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
-        $this->getServer()->getPluginManager()->getPlugin("EconomyAPI");
+        Server::getInstance()->getPluginManager()->getPlugin("EconomyAPI");
         $this->getServer()->getCommandMap()->register("sellui", new SellUICommand($this));
         $this->getLogger()->info("Plugin Actived!");
         $this->saveDefaultConfig();
