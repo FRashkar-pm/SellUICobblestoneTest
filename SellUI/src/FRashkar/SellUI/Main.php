@@ -4,63 +4,54 @@ namespace FRashkar\SellUI;
 
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
-
-use pocketmine\event\Listener;
-use pocketmine\Server;
-
-use pocketmine\block\VanillaBlocks;
-
 use pocketmine\item\Item;
-use pocketmine\item\ItemFactory;
-use pocketmine\item\ItemIds;
+use pocketmine\item\ItemTypeIds;
 use pocketmine\item\VanillaItems;
 use pocketmine\inventory\Inventory;
 use pocketmine\inventory\PlayerInventory;
-
-use pocketmine\utils\Config;
-use pocketmine\utils\TextFormat;
-
 use pocketmine\player\Player;
 use pocketmine\plugin\Plugin;
 use pocketmine\plugin\PluginBase;
 use pocketmine\plugin\PluginManager;
-
+use pocketmine\utils\Config;
+use pocketmine\utils\TextFormat;
+use pocketmine\Server;
 use FRashkar\SellUI\Commands\SellUICommand;
-use FRashkar\SellUI\cobblestone;
-
 use Vecnavium\FormsUI\SimpleForm;
 use onebone\economyapi\EconomyAPI;
 
-class Main extends PluginBase implements Listener {
+class Main extends PluginBase
+{
 
-    public function onEnable() : void {
+    public function onEnable() : void
+    {
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
-        $this->getServer()->getPluginManager()->getPlugin("EconomyAPI");
+        if ($this->getEconomyAPI() === null){
+            $this->getLogger()->emergency("There are no EconomyAPI plugin.");
+            $this->getPluginManager()->disablePlugin($this);
+        }
         $this->getServer()->getCommandMap()->register("sellui", new SellUICommand($this));
         $this->getLogger()->info("Plugin Actived!");
         $this->saveDefaultConfig();
         
     }
 
-    public function onCommand(CommandSender $sender, Command $command, string $label, array $args) : bool {
-        switch ($command->getName()) {
-            case "sellui":
-                if ($sender instanceof Player) {
-                    $this->openSellUI($sender);
-                }
-                break;
+    public function getEconomyAPI() : ?EconomyAPI
+    {
+        if ($this->getServer()->getPluginManager()->getPlugin("EconomyAPI") !== null){
+            return EconomyAPI::getInstance();
         }
-        return true;
+        return null;
     }
-
+    
     public function openSellUI(Player $player)
     {
-        $form = new SimpleForm(function(Player $player, int $result = null) {
-            if ($result === null) {
+        $form = new SimpleForm(function(Player $player, int $result = null) : void {
+            if ($result === null){
                 return;
             }
             // Button 1
-            if ($result === 0) {
+            if ($result === 0){
                 
                 // Get item in hand
                 $item = $player->getInventory()->getItemInHand();
@@ -71,19 +62,19 @@ class Main extends PluginBase implements Listener {
                 $total = $item->getCount() * $price;
 
                 // Give money to player 
-                EconomyAPI::getInstance()->addMoney($player, $total);
+                $this->getEconomyAPI()->addMoney($player, $total);
 
                 // Send message to player
                 $player->sendMessage("You have recieved $ " . $total . " for selling Cobblestone x" . $item->getCount());
 
                 // Reset item
-                $player->getInventory()->setItemInHand(VanillaBlocks::AIR()->asItem());
+                $player->getInventory()->setItemInHand(VanillaItems::AIR());
                 
             }});
 
         $item = $player->getInventory()->getItemInHand();
 
-        if ($item->getId() != 4) {
+        if ($item->getTypeId() !== VanillaBlocks::COBBLESTONE()->asItem()->getTypeId()){
             $player->sendMessage("You can only sell cobblestone!");
             return;
         }
