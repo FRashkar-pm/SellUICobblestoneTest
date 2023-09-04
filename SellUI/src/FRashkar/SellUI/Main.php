@@ -2,6 +2,7 @@
 
 namespace FRashkar\SellUI;
 
+use pocketmine\block\VanillaBlocks;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\item\Item;
@@ -28,7 +29,7 @@ class Main extends PluginBase
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
         if ($this->getEconomyAPI() === null){
             $this->getLogger()->emergency("There are no EconomyAPI plugin.");
-            $this->getPluginManager()->disablePlugin($this);
+            $this->getServer()->getPluginManager()->disablePlugin($this);
         }
         $this->getServer()->getCommandMap()->register("sellui", new SellUICommand($this));
         $this->getLogger()->info("Plugin Actived!");
