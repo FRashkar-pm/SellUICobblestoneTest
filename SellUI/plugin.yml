@@ -1,6 +1,6 @@
 name: SellUI
 version: 0.0.2
-api: [4.0.0, 5.0.0]
+api: 5.0.0
 author: FRashkar
 main: FRashkar\SellUI\Main
 description: "SellUI for cobblestone only!"
